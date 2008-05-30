@@ -1,5 +1,5 @@
 /*
- * $Id: XS.xs,v 0.1 2007/04/27 17:17:46 dankogai Exp dankogai $
+ * $Id: XS.xs,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
  */
 
 #include "EXTERN.h"
@@ -73,15 +73,15 @@ SV *decode_uri_component(SV *uri){
 
     for (i = 0; i < slen; i++){
 	if (src[i] == '%'){
-	    if (ishexnumber(src[i+1]) && ishexnumber(src[i+2])){
+	    if (isxdigit(src[i+1]) && isxdigit(src[i+2])){
 		strncpy((char *)buf, (char *)(src + i + 1), 2);
 		hi = strtol((char *)buf, NULL, 16);
 		dst[dlen++] = hi;
 		i += 2;
 	    }
 	    else if(src[i+1] == 'u'
-		    && ishexnumber(src[i+2]) && ishexnumber(src[i+3])
-		    && ishexnumber(src[i+4]) && ishexnumber(src[i+5])){
+		    && isxdigit(src[i+2]) && isxdigit(src[i+3])
+		    && isxdigit(src[i+4]) && isxdigit(src[i+5])){
 		strncpy((char *)buf, (char *)(src + i + 2), 4);
 		hi = strtol((char *)buf, NULL, 16);
 		i += 5;
@@ -95,8 +95,8 @@ SV *decode_uri_component(SV *uri){
 		    }else{
 			i++;
 			if(src[i] == '%' && src[i+1] == 'u'
-			   && ishexnumber(src[i+2]) && ishexnumber(src[i+3])
-			   && ishexnumber(src[i+4]) && ishexnumber(src[i+5])){
+			   && isxdigit(src[i+2]) && isxdigit(src[i+3])
+			   && isxdigit(src[i+4]) && isxdigit(src[i+5])){
 			    strncpy((char *)buf, (char *)(src + i + 2), 4);
 			    lo = strtol((char *)buf, NULL, 16);
 			    i += 5;

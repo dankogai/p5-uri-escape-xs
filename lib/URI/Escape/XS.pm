@@ -1,6 +1,6 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.1 2007/04/27 17:17:46 dankogai Exp dankogai $
+# $Id: XS.pm,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
@@ -56,7 +56,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.1 2007/04/27 17:17:46 dankogai Exp dankogai $
+$Id: XS.pm,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
 
 =cut
 
@@ -87,7 +87,7 @@ L</uri_escape> and L</uri_unescape>
 
 =head2 encodeURIComponent
 
-Does what  JavaScript's encodeURIComponent does.
+Does what JavaScript's encodeURIComponent does.
 
   $uri = encodeURIComponent("http://www.example.com/");
   # http%3A%2F%2Fwww.example.com%2F
@@ -247,7 +247,7 @@ Koichi Taniguchi for L<URI::Escape::JavaScript>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007 Dan Kogai, all rights reserved.
+Copyright 2007-2008 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
