@@ -1,0 +1,13 @@
+#
+# $Id$
+#
+# Revision history for Revision history for URI-Escape-XS
+#
+$Revision: 0.1 $ $Date: 2007/04/27 17:17:46 $
+! lib/URI/Escape/XS.pm
+  POD fixes.
+
+0.01 2007/04/27 17:17:46
++ *
+  First Release.
+
