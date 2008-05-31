@@ -2,7 +2,7 @@ NAME
     URI::Escape::XS - Drop-In replacement for URI::Escape
 
 VERSION
-    $Id: README,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
+    $Id: README,v 0.2 2008/05/30 23:53:13 dankogai Exp $
 
 SYNOPSIS
         # use it instead of URI::Escape

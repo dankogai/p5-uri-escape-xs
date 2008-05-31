@@ -1,11 +1,11 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
+# $Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = '0.01';
+our $VERSION = sprintf "%d.%02d", q$Revision: 0.2 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent);
@@ -56,7 +56,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.2 2008/05/30 23:53:13 dankogai Exp dankogai $
+$Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp dankogai $
 
 =cut
 
