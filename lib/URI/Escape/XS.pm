@@ -1,6 +1,6 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp dankogai $
+# $Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp $
 #
 use 5.008001;
 use warnings;
@@ -56,7 +56,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp dankogai $
+$Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp $
 
 =cut
 
