@@ -105,7 +105,7 @@ $Id: XS.pm,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
     $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
     # if you have CNet::IDN::Encode installed
-    $safe = encodeURIComponentIDN("http://弾.jp/dan/")
+    $safe = encodeURIComponentIDN("http://弾.jp/dan/");
     $str  = decodeURIComponentIDN("http:%2F%2Fxn--81t.jp%2Fdan%2F");
 
 =head1 EXPORT
