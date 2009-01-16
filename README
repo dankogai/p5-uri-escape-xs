@@ -2,13 +2,13 @@ NAME
     URI::Escape::XS - Drop-In replacement for URI::Escape
 
 VERSION
-    $Id: README,v 0.2 2008/05/30 23:53:13 dankogai Exp $
+    $Id: XS.pm,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
 
 SYNOPSIS
         # use it instead of URI::Escape
         use URI::Escape::XS qw/uri_escape uri_unescape/;
         $safe = uri_escape("10% is enough\n");
-        $verysafe = uri_escape("foo", "\0-377);
+        $verysafe = uri_escape("foo", "\0-\377");
         $str  = uri_unescape($safe);
 
         # or use encodeURIComponent and decodeURIComponent
@@ -16,9 +16,16 @@ SYNOPSIS
         $safe = encodeURIComponent("10% is enough\n");
         $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
+        # if you have CNet::IDN::Encode installed
+        $safe = encodeURIComponentIDN("http://å¼¾.jp/dan/")
+        $str  = decodeURIComponentIDN("http:%2F%2Fxn--81t.jp%2Fdan%2F");
+
 EXPORT
   by default
     "encodeURIComponent" and "decodeURIComponent"
+
+    "encodeURIComponentIDN" and "decodeURIComponentIDN" if Net::IDN::Encode
+    is available
 
   on demand
     "uri_escape" and "uri_unescape"
@@ -50,9 +57,22 @@ FUNCTIONS
 
       decode_utf8(decodeURIComponent($uri));
 
-    This is the correct behavior because you can't tell if the decoded
+    This is the correct behavior because you cannot tell if the decoded
     string actually contains UTF-8 decoded string, like ISO-8859-1 and
     Shift_JIS.
+
+  encodeURIComponentIDN
+    Same as "encodeURIComponent" except that the host part is encoded in
+    punycode. Net::IDN::Encode is required to use this function.
+
+    URIs with Internationalizing Domain Names require two encodings:
+    Punycode for host part and URI escape for the rest.
+
+    Currently only FULL URIs with "http:" or "https:" are supported.
+
+  decodeURIComponentIDN
+    Same as "decodeURIComponent" except that the host part is encoded in
+    punycode. Net::IDN::Encode is required to use this function.
 
   uri_escape
     Does exactly the same as URI::Escape::uri_escape() except when
@@ -82,10 +102,10 @@ FUNCTIONS
     Encode. Remember. URIs have always been a byte sequence, not UTF-8
     characters.
 
-    If %uHHHH sequence became standard, you could've safely told if a given
-    URI is in Unicode. But more fortunately than unfortunately, the RFC
-    proposal was rejected so you can't tell which encoding is used just by
-    looking at the URI.
+    If the %uHHHH sequence became standard, you could have safely told if a
+    given URI is in Unicode. But more fortunately than unfortunately, the
+    RFC proposal was rejected so you cannot tell which encoding is used just
+    by looking at the URI.
 
     <http://en.wikipedia.org/wiki/Percent-encoding#Non-standard_implementati
     ons>
@@ -149,16 +169,20 @@ SUPPORT
 
     You can also look for information at:
 
-    * AnnoCPAN: Annotated CPAN documentation
+    *   AnnoCPAN: Annotated CPAN documentation
+
         <http://annocpan.org/dist/URI-Escape-XS>
 
-    * CPAN Ratings
+    *   CPAN Ratings
+
         <http://cpanratings.perl.org/d/URI-Escape-XS>
 
-    * RT: CPAN's request tracker
+    *   RT: CPAN's request tracker
+
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=URI-Escape-XS>
 
-    * Search CPAN
+    *   Search CPAN
+
         <http://search.cpan.org/dist/URI-Escape-XS>
 
 ACKNOWLEDGEMENTS
@@ -166,8 +190,10 @@ ACKNOWLEDGEMENTS
 
     Koichi Taniguchi for URI::Escape::JavaScript
 
+    Claus Färber for Net::IDN::Encode
+
 COPYRIGHT & LICENSE
-    Copyright 2007 Dan Kogai, all rights reserved.
+    Copyright 2007-2008 Dan Kogai, all rights reserved.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

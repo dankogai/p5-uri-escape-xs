@@ -4,6 +4,11 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.3 $ $Date: 2009/01/16 06:38:52 $
+! XS.pm README
++ t/04-idn.t
+  added: decodeURICompornentIDN() and encodeURICompornentIDN()
+
+$Revision: 0.3 $ $Date: 2009/01/16 06:38:52 $
 ! XS.pm
   Arguments are now unconditionally stringified
   http://rt.cpan.org/Public/Bug/Display.html?39344

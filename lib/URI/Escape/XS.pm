@@ -8,11 +8,13 @@ use strict;
 our $VERSION = sprintf "%d.%02d", q$Revision: 0.3 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
-our @EXPORT    = qw(encodeURIComponent decodeURIComponent);
+our @EXPORT    = qw(encodeURIComponent decodeURIComponent
+		    encodeURIComponentIDN decodeURIComponentIDN);
 our @EXPORT_OK = qw(uri_escape uri_unescape);
 
 require XSLoader;
 XSLoader::load('URI::Escape::XS', $VERSION);
+
 
 sub uri_unescape {
     wantarray 
@@ -49,8 +51,35 @@ sub uri_unescape {
     }
 }
 
+eval { require Net::IDN::Encode };
+if ( !$@ ) {
+    require Encode;
+    *decodeURIComponentIDN = sub ($) {
+        my $uri = Encode::decode_utf8( decodeURIComponent(shift) );
+        $uri =~ s{\A (https?://)([^/]+)(.*) }
+		 {
+		     $1 
+			 . Net::IDN::Encode::domain_to_unicode($2)
+			     . $3;
+		 }msex;
+        return $uri;
+    };
+
+    *encodeURIComponentIDN = sub ($) {
+        my $uri = shift;
+        $uri =~ s{\A (https?)://([^/]+)(.*) }
+		 {
+		     $1 . ":%2F%2F"
+			 . Net::IDN::Encode::domain_to_ascii($2)
+			     . encodeURIComponent($3);
+		 }msex;
+        return $uri;
+    };
+}
+
 1;
 __END__
+=encoding utf8
 
 =head1 NAME
 
@@ -75,11 +104,17 @@ $Id: XS.pm,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
     $safe = encodeURIComponent("10% is enough\n");
     $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
+    # if you have CNet::IDN::Encode installed
+    $safe = encodeURIComponentIDN("http://弾.jp/dan/")
+    $str  = decodeURIComponentIDN("http:%2F%2Fxn--81t.jp%2Fdan%2F");
+
 =head1 EXPORT
 
 =head2 by default
 
 L</encodeURIComponent> and L</decodeURIComponent>
+
+L</encodeURIComponentIDN> and L</decodeURIComponentIDN> if L<Net::IDN::Encode> is available
 
 =head2 on demand
 
@@ -117,6 +152,21 @@ This function UNCONDITIONALLY returns the decoded string with utf8 flag off.  To
 This is the correct behavior because you cannot tell if the decoded
 string actually contains UTF-8 decoded string, like ISO-8859-1 and
 Shift_JIS.
+
+=head2 encodeURIComponentIDN
+
+Same as L</encodeURIComponent> except that the host part is encoded in
+punycode.  L<Net::IDN::Encode> is required to use this function.
+
+URIs with Internationalizing Domain Names require two encodings:
+Punycode for host part and URI escape for the rest.
+
+Currently only FULL URIs with C<http:> or C<https:> are supported.
+
+=head2 decodeURIComponentIDN
+
+Same as L</decodeURIComponent> except that the host part is encoded in
+punycode.  L<Net::IDN::Encode> is required to use this function.
 
 =head2 uri_escape
 
@@ -246,6 +296,8 @@ L<http://search.cpan.org/dist/URI-Escape-XS>
 Gisle Aas for L<URI::Escape>
 
 Koichi Taniguchi for L<URI::Escape::JavaScript>
+
+Claus Färber for L<Net::IDN::Encode>
 
 =head1 COPYRIGHT & LICENSE
 
