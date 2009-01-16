@@ -1,6 +1,6 @@
 #!perl -w
 #
-# $Id: 03-hashu.t,v 0.2 2008/05/31 00:48:19 dankogai Exp dankogai $
+# $Id: 03-hashu.t,v 0.2 2008/05/31 00:48:19 dankogai Exp $
 #
 # Original as URI-1.35/t/escape.t
 #

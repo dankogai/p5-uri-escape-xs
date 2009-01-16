@@ -1,9 +1,17 @@
 #
-# $Id: Changes,v 0.2 2008/05/30 23:53:13 dankogai Exp $
+# $Id: Changes,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.2 $ $Date: 2008/05/30 23:53:13 $
+$Revision: 0.3 $ $Date: 2009/01/16 06:38:52 $
+! XS.pm
+  Arguments are now unconditionally stringified
+  http://rt.cpan.org/Public/Bug/Display.html?39344
+! XS.xs
+  Addressed test failure on 5.10.x and others
+  http://rt.cpan.org/Public/Bug/Display.html?39135
+
+0.02 2008/05/30 23:53:13
 ! XS.xs
   s/ishexnumber/isxdigit/g # for better compatibility
   http://rt.cpan.org/Public/Bug/Display.html?id=32556

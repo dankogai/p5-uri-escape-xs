@@ -1,11 +1,11 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp $
+# $Id: XS.pm,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = sprintf "%d.%02d", q$Revision: 0.2 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%02d", q$Revision: 0.3 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent);
@@ -25,8 +25,10 @@ sub uri_unescape {
     my %escapes = map { chr($_) => sprintf("%%%02X", $_) } (0..255);
     my %regexp;
     sub uri_escape {
-	my($text, $patn) = @_;
+	return unless @_;
+	my ($text, $patn) = @_;
 	return undef unless defined $text;
+	$text .= ''; 	# RT#39344 -- force string
 	if (defined $patn){
 	    unless (exists $regexp{$patn}){
 		my $re;
@@ -56,7 +58,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.2 2008/05/31 00:00:32 dankogai Exp $
+$Id: XS.pm,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
 
 =cut
 

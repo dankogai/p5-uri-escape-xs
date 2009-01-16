@@ -1,5 +1,5 @@
 /*
- * $Id: XS.xs,v 0.2 2008/05/30 23:53:13 dankogai Exp $
+ * $Id: XS.xs,v 0.3 2009/01/16 06:38:52 dankogai Exp dankogai $
  */
 
 #include "EXTERN.h"
@@ -83,6 +83,7 @@ SV *decode_uri_component(SV *uri){
 		    && isxdigit(src[i+2]) && isxdigit(src[i+3])
 		    && isxdigit(src[i+4]) && isxdigit(src[i+5])){
 		strncpy((char *)buf, (char *)(src + i + 2), 4);
+		buf[4] = '\0'; /* RT#39135 */
 		hi = strtol((char *)buf, NULL, 16);
 		i += 5;
 		if (hi < 0xD800  || 0xDFFF < hi){
