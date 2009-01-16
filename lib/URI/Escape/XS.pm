@@ -56,22 +56,22 @@ if ( !$@ ) {
     require Encode;
     *decodeURIComponentIDN = sub ($) {
         my $uri = Encode::decode_utf8( decodeURIComponent(shift) );
-        $uri =~ s{\A (https?://)([^/]+)(.*) }
+        $uri =~ s{\A (https?://)([^/:]+)(:[\d]+)?(.*) }
 		 {
 		     $1 
-			 . Net::IDN::Encode::domain_to_unicode($2)
-			     . $3;
+			 . Net::IDN::Encode::domain_to_unicode($2) . ($3||'')
+			     . $4;
 		 }msex;
         return $uri;
     };
 
     *encodeURIComponentIDN = sub ($) {
         my $uri = shift;
-        $uri =~ s{\A (https?)://([^/]+)(.*) }
+        $uri =~ s{\A (https?)://([^/:]+)(:[\d]+)?(.*) }
 		 {
 		     $1 . ":%2F%2F"
-			 . Net::IDN::Encode::domain_to_ascii($2)
-			     . encodeURIComponent($3);
+			 . Net::IDN::Encode::domain_to_ascii($2) . ($3||'')
+			     . encodeURIComponent($4);
 		 }msex;
         return $uri;
     };
