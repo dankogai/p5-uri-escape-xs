@@ -17,7 +17,7 @@ XSLoader::load('URI::Escape::XS', $VERSION);
 
 
 sub uri_unescape {
-    wantarray 
+    wantarray
 	? map { decodeURIComponent($_) } @_
 	: decodeURIComponent(shift)
 }
@@ -30,7 +30,7 @@ sub uri_unescape {
 	return unless @_;
 	my ($text, $patn) = @_;
 	return undef unless defined $text;
-	$text .= ''; 	# RT#39344 -- force string
+	$text .= '';    # RT#39344 -- force string
 	if (defined $patn){
 	    unless (exists $regexp{$patn}){
 		my $re;
@@ -58,7 +58,7 @@ if ( !$@ ) {
         my $uri = Encode::decode_utf8( decodeURIComponent(shift) );
         $uri =~ s{\A (https?://)([^/:]+)(:[\d]+)?(.*) }
 		 {
-		     $1 
+		     $1
 			 . Net::IDN::Encode::domain_to_unicode($2) . ($3||'')
 			     . $4;
 		 }msex;
@@ -105,8 +105,8 @@ $Id: XS.pm,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
     $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
     # if you have CNet::IDN::Encode installed
-    $safe = encodeURIComponentIDN("http://弾.jp/dan/");
-    $str  = decodeURIComponentIDN("http:%2F%2Fxn--81t.jp%2Fdan%2F");
+    $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/");
+    $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
 
 =head1 EXPORT
 
@@ -134,7 +134,7 @@ use L</uri_escape>.
 
 =head2 decodeURIComponent
 
-Does what JavaScript's decodeURIComponent does. 
+Does what JavaScript's decodeURIComponent does.
 
   $str = decodeURIComponent("http%3A%2F%2Fwww.example.com%2F");
   # http://www.example.com/
@@ -171,7 +171,7 @@ punycode.  L<Net::IDN::Encode> is required to use this function.
 =head2 uri_escape
 
 Does exactly the same as L<URI::Escape>::uri_escape() B<except>
-when utf8-flagged string is fed. 
+when utf8-flagged string is fed.
 
 L<URI::Escape>::uri_escape() croak and urge you to
 C<uri_escape_utf8()> but it is pointless because URI itself has no
@@ -189,9 +189,9 @@ when %uHHHH is fed.
 
 L<URI::Escape>::uri_unescape() simply ignores %uHHHH sequences while
 the function in this module does decode it into the corresponding
-UTF-8 B<byte sequence>. 
+UTF-8 B<byte sequence>.
 
-Like L<uri_escape>, this funciton is NOT EXPORTED by default. 
+Like L<uri_escape>, this funciton is NOT EXPORTED by default.
 
 =head2 Note on the %uHHHH sequence
 
@@ -301,7 +301,7 @@ Claus Färber for L<Net::IDN::Encode>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2008 Dan Kogai, all rights reserved.
+Copyright 2007-2009 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

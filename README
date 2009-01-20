@@ -17,8 +17,8 @@ SYNOPSIS
         $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
         # if you have CNet::IDN::Encode installed
-        $safe = encodeURIComponentIDN("http://弾.jp/dan/")
-        $str  = decodeURIComponentIDN("http:%2F%2Fxn--81t.jp%2Fdan%2F");
+        $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/")
+        $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
 
 EXPORT
   by default
@@ -190,10 +190,10 @@ ACKNOWLEDGEMENTS
 
     Koichi Taniguchi for URI::Escape::JavaScript
 
-    Claus F�rber for Net::IDN::Encode
+    Claus Färber for Net::IDN::Encode
 
 COPYRIGHT & LICENSE
-    Copyright 2007-2008 Dan Kogai, all rights reserved.
+    Copyright 2007-2009 Dan Kogai, all rights reserved.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
