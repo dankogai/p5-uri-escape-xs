@@ -4,11 +4,17 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.4 $ $Date: 2009/01/16 08:26:52 $
+! t/t/01-compat.t
+  Retouched so it is now locale-free
+  http://rt.cpan.org/Public/Bug/Display.html?41134
+  http://rt.cpan.org/Public/Bug/Display.html?42702
+
+0.04 2009/01/16 08:26:52
 ! XS.pm README
 + t/04-idn.t
   added: decodeURICompornentIDN() and encodeURICompornentIDN()
 
-$Revision: 0.4 $ $Date: 2009/01/16 08:26:52 $
+0.03 2009/01/16 08:26:52
 ! XS.pm
   Arguments are now unconditionally stringified
   http://rt.cpan.org/Public/Bug/Display.html?39344
