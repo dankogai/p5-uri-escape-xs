@@ -4,6 +4,10 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.4 $ $Date: 2009/01/16 08:26:52 $
+!  lib/URI/Escape/XS.pm
+!  t/04-IDN.t
+   drry:   * fixed POD and test. * et cetera.
+   http://coderepos.org/share/changeset/28708
 ! t/t/01-compat.t
   Retouched so it is now locale-free
   http://rt.cpan.org/Public/Bug/Display.html?41134
