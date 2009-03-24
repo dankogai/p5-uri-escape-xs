@@ -1,11 +1,11 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
+# $Id: XS.pm,v 0.5 2009/03/24 14:24:09 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = sprintf "%d.%02d", q$Revision: 0.4 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%02d", q$Revision: 0.5 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent
@@ -51,7 +51,8 @@ sub uri_unescape {
     }
 }
 
-eval { require Net::IDN::Encode };
+
+eval { require Net::LibIDN };
 if ( !$@ ) {
     require Encode;
     *decodeURIComponentIDN = sub ($) {
@@ -59,8 +60,11 @@ if ( !$@ ) {
         $uri =~ s{\A (https?://)([^/:]+)(:[\d]+)?(.*) }
 		 {
 		     $1
-			 . Net::IDN::Encode::domain_to_unicode($2) . ($3||'')
-			     . $4;
+		     . Encode::decode_utf8(
+		         Net::LibIDN::idn_to_unicode($2, 'utf-8')
+		     )
+		     . ($3||'')
+		     . $4;
 		 }msex;
         return $uri;
     };
@@ -70,13 +74,40 @@ if ( !$@ ) {
         $uri =~ s{\A (https?)://([^/:]+)(:[\d]+)?(.*) }
 		 {
 		     $1 . ":%2F%2F"
-			 . Net::IDN::Encode::domain_to_ascii($2) . ($3||'')
+			 . Net::LibIDN::idn_to_ascii($2, 'utf-8') . ($3||'')
 			     . encodeURIComponent($4);
 		 }msex;
         return $uri;
     };
-}
 
+}
+else {
+    eval { require Net::IDN::Encode };
+    if ( !$@ ) {
+        require Encode;
+        *decodeURIComponentIDN = sub ($) {
+            my $uri = Encode::decode_utf8( decodeURIComponent(shift) );
+            $uri =~ s{\A (https?://)([^/:]+)(:[\d]+)?(.*) }
+		 {
+		     $1
+			 . Net::IDN::Encode::domain_to_unicode($2) . ($3||'')
+			     . $4;
+		 }msex;
+            return $uri;
+        };
+
+        *encodeURIComponentIDN = sub ($) {
+            my $uri = shift;
+            $uri =~ s{\A (https?)://([^/:]+)(:[\d]+)?(.*) }
+		 {
+		     $1 . ":%2F%2F"
+			 . Net::IDN::Encode::domain_to_ascii($2) . ($3||'')
+			     . encodeURIComponent($4);
+		 }msex;
+            return $uri;
+        };
+    }
+}
 1;
 __END__
 =encoding utf8
@@ -87,7 +118,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
+$Id: XS.pm,v 0.5 2009/03/24 14:24:09 dankogai Exp dankogai $
 
 =cut
 
@@ -114,7 +145,8 @@ $Id: XS.pm,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
 
 L</encodeURIComponent> and L</decodeURIComponent>
 
-L</encodeURIComponentIDN> and L</decodeURIComponentIDN> if L<Net::IDN::Encode> is available
+L</encodeURIComponentIDN> and L</decodeURIComponentIDN> if either
+L<Net::LibIDN> or L<Net::IDN::Encode> is available
 
 =head2 on demand
 
@@ -156,7 +188,8 @@ Shift_JIS.
 =head2 encodeURIComponentIDN
 
 Same as L</encodeURIComponent> except that the host part is encoded in
-punycode.  L<Net::IDN::Encode> is required to use this function.
+punycode.  Either L<Net::LibIDN> or L<Net::IDN::Encode> is required to
+use this function.
 
 URIs with Internationalizing Domain Names require two encodings:
 Punycode for host part and URI escape for the rest.
@@ -166,7 +199,8 @@ Currently only FULL URIs with C<http:> or C<https:> are supported.
 =head2 decodeURIComponentIDN
 
 Same as L</decodeURIComponent> except that the host part is encoded in
-punycode.  L<Net::IDN::Encode> is required to use this function.
+punycode.  Either L<Net::LibIDN> or L<Net::IDN::Encode> is required to
+use this function.
 
 =head2 uri_escape
 
@@ -296,6 +330,8 @@ L<http://search.cpan.org/dist/URI-Escape-XS>
 Gisle Aas for L<URI::Escape>
 
 Koichi Taniguchi for L<URI::Escape::JavaScript>
+
+Thomas Jacob for L<Net::IDN::Encode>
 
 Claus Färber for L<Net::IDN::Encode>
 

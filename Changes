@@ -1,9 +1,14 @@
 #
-# $Id: Changes,v 0.4 2009/01/16 08:26:52 dankogai Exp dankogai $
+# $Id: Changes,v 0.5 2009/03/24 14:24:09 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.4 $ $Date: 2009/01/16 08:26:52 $
+$Revision: 0.5 $ $Date: 2009/03/24 14:24:09 $
+! lib/URI/Escape/XS.pm t/04-IDN.t
+  Now you can also use Net::LibIDN instead of Net::IDN::Encode
+  http://rt.cpan.org/Public/Bug/Display.html?id=44084
+
+0.04 2009/01/16 08:26:52
 !  lib/URI/Escape/XS.pm
 !  t/04-IDN.t
    drry:   * fixed POD and test. * et cetera.
