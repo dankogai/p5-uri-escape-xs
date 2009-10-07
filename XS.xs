@@ -1,5 +1,5 @@
 /*
- * $Id: XS.xs,v 0.3 2009/01/16 06:38:52 dankogai Exp $
+ * $Id: XS.xs,v 0.4 2009/10/07 11:40:30 dankogai Exp dankogai $
  */
 
 #include "EXTERN.h"
@@ -35,12 +35,16 @@ static char escapes[256] =
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
-SV *encode_uri_component(SV *str){
-    int slen   = SvCUR(str);
-    int dlen   = 0;
-    SV *result = newSV(slen * 3 + 1); /* at most 3 times */
+SV *encode_uri_component(SV *sstr){
+    SV *str, *result;
+    int slen, dlen;
     U8 *src, *dst;
     int i;
+    if (sstr == &PL_sv_undef) return newSV(0);
+    str    = newSVsv(sstr);  /* make a copy to make func($1) work */
+    slen   = SvPOK(str) ? SvCUR(str) : 0;
+    dlen   = 0;
+    result = newSV(slen * 3 + 1); /* at most 3 times */
 
     SvPOK_on(result);
     src   = (U8 *)SvPV_nolen(str);
@@ -60,12 +64,17 @@ SV *encode_uri_component(SV *str){
     return result;
 }
 
-SV *decode_uri_component(SV *uri){
-    int slen = SvCUR(uri);
-    int dlen = 0;
-    SV *result = newSV(slen + 1);
+SV *decode_uri_component(SV *suri){
+    SV *uri, *result;
+    int slen, dlen;
     U8 buf[8], *dst, *src, *bp;
     int i, hi, lo;
+    if (suri == &PL_sv_undef) return newSV(0);
+    /* if (!SvPOK(suri)) return newSV(0); */
+    uri  = newSVsv(suri);  /* make a copy to make func($1) work */
+    slen = SvPOK(uri) ? SvCUR(uri) : 0;
+    dlen = 0;
+    result = newSV(slen + 1);
    
     SvPOK_on(result);
     dst  = (U8 *)SvPV_nolen(result);

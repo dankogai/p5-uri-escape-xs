@@ -1,9 +1,20 @@
 #
-# $Id: Changes,v 0.5 2009/03/24 14:24:09 dankogai Exp dankogai $
+# $Id: Changes,v 0.6 2009/10/07 11:40:30 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.5 $ $Date: 2009/03/24 14:24:09 $
+$Revision: 0.6 $ $Date: 2009/10/07 11:40:30 $
++ t/05-null.t
+! XS.xs lib/URI/Escape/XS.pm
+  Addressed:
+  #45392: First invocation of encodeURIComponentIDN loses the path
+  #49375: decodeURIComponent() influences references from a regexp
+  #45855: Problems with undef
+  http://rt.cpan.org/Public/Bug/Display.html?id=45392
+  http://rt.cpan.org/Public/Bug/Display.html?id=49375
+  http://rt.cpan.org/Public/Bug/Display.html?id=45855
+
+0.05 2009/03/24 14:24:09
 ! lib/URI/Escape/XS.pm t/04-IDN.t
   Now you can also use Net::LibIDN instead of Net::IDN::Encode
   http://rt.cpan.org/Public/Bug/Display.html?id=44084
