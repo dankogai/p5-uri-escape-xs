@@ -1,9 +1,14 @@
 #
-# $Id: Changes,v 0.7 2010/05/04 06:02:38 dankogai Exp $
+# $Id: Changes,v 0.8 2010/07/16 07:52:31 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.7 $ $Date: 2010/05/04 06:02:38 $
+$Revision: 0.8 $ $Date: 2010/07/16 07:52:31 $
+! XS.xs
+  The fix in RT#39135 did not address %XX
+  reported by @kazuho via twitter DM
+
+0.07 2010/05/04 06:02:38
 ! XS.xs
   Addressed:
   #57168: memory leak in uri_escape ?
