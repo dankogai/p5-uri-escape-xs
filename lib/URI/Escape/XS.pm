@@ -122,6 +122,15 @@ $Id: XS.pm,v 0.8 2010/07/16 07:51:37 dankogai Exp $
 
 =cut
 
+=head1 DESCRIPTION
+
+URI::Escape::XS is a drop-in replacement for URI::Escape for common cases which
+offers much faster performance by using compiled XS code.
+
+This module requires Perl 5.8.1 compared to 5.6.1 for URI::Escape.
+The uri_escape_utf8 function from URI::Escape is not present here, as
+our uri_escape() method handles UTF-8 characters automatically.
+
 =head1 SYNOPSIS
 
     # use it instead of URI::Escape
