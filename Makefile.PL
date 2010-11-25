@@ -8,6 +8,7 @@ WriteMakefile(
     VERSION_FROM        => 'lib/URI/Escape/XS.pm',
     ABSTRACT_FROM       => 'lib/URI/Escape/XS.pm',
     PL_FILES            => {},
+    MIN_PERL_VERSION    => 5.8.1,
     PREREQ_PM => {
         'Test::More' => 0,
     },
