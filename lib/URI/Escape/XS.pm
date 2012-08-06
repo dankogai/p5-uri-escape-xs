@@ -1,11 +1,11 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.8 2010/07/16 07:51:37 dankogai Exp $
+# $Id: XS.pm,v 0.9 2012/08/06 01:44:20 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = sprintf "%d.%02d", q$Revision: 0.8 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%02d", q$Revision: 0.9 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent
@@ -118,26 +118,26 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.8 2010/07/16 07:51:37 dankogai Exp $
+$Id: XS.pm,v 0.9 2012/08/06 01:44:20 dankogai Exp dankogai $
 
 =cut
 
 =head1 SYNOPSIS
 
-    # use it instead of URI::Escape
-    use URI::Escape::XS qw/uri_escape uri_unescape/;
-    $safe = uri_escape("10% is enough\n");
-    $verysafe = uri_escape("foo", "\0-\377");
-    $str  = uri_unescape($safe);
+  # use it instead of URI::Escape
+  use URI::Escape::XS qw/uri_escape uri_unescape/;
+  $safe = uri_escape("10% is enough\n");
+  $verysafe = uri_escape("foo", "\0-\377");
+  $str  = uri_unescape($safe);
 
-    # or use encodeURIComponent and decodeURIComponent
-    use URI::Escape::XS;
-    $safe = encodeURIComponent("10% is enough\n");
-    $str  = decodeURIComponent("10%25%20is%20enough%0A");
+  # or use encodeURIComponent and decodeURIComponent
+  use URI::Escape::XS;
+  $safe = encodeURIComponent("10% is enough\n");
+  $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
-    # if you have CNet::IDN::Encode installed
-    $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/");
-    $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
+  # if you have CNet::IDN::Encode installed
+  $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/");
+  $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
 
 =head1 EXPORT
 
@@ -331,13 +331,13 @@ Gisle Aas for L<URI::Escape>
 
 Koichi Taniguchi for L<URI::Escape::JavaScript>
 
-Thomas Jacob for L<Net::IDN::Encode>
+Thomas Jacob for L<Net::LibIDN>
 
 Claus Färber for L<Net::IDN::Encode>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2009 Dan Kogai, all rights reserved.
+Copyright 2007-2012 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

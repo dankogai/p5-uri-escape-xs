@@ -1,9 +1,19 @@
 #
-# $Id: Changes,v 0.8 2010/07/16 07:52:31 dankogai Exp dankogai $
+# $Id: Changes,v 0.9 2012/08/06 01:44:20 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.8 $ $Date: 2010/07/16 07:52:31 $
+$Revision: 0.9 $ $Date: 2012/08/06 01:44:20 $
+! lib/URI/Escape/XS.pm
+  POD Fixes
+! Makefile.PL
+  Addressed: RT#78738: Please provide LICENSE in metadata.
+  https://rt.cpan.org/Ticket/Display.html?id=78738
+! t/04-idn.t
+  Addressed: RT#74344: Fails when Net::IDN::Encode 2.003 installed
+  https://rt.cpan.org/Ticket/Display.html?id=74344
+
+0.08 2010/07/16 07:52:31
 ! XS.xs
   The fix in RT#39135 did not address %XX
   reported by @kazuho via twitter DM

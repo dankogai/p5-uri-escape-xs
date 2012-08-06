@@ -1,6 +1,6 @@
 #!perl -w
 #
-# $Id: 04-idn.t,v 1.3 2009/10/07 11:40:30 dankogai Exp $
+# $Id: 04-idn.t,v 1.4 2012/08/06 01:44:20 dankogai Exp dankogai $
 #
 # Original as URI-1.35/t/escape.t
 #
@@ -26,8 +26,8 @@ SKIP: {
     $e = 'http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdankogai%2F%E3%81%A0%E3%82%93%2F%E3%83%80%E3%83%B3';
     is decodeURIComponentIDN($e) => $d, 'decodeURIComponentIDN';
     is encodeURIComponentIDN($d) => $e, 'encodeURIComponentIDN';
-    $d = 'http://ドメイン名例.JP:8080/dankogai/だん/ダン';
-    $e = 'http:%2F%2Fxn--eckwd4c7cu47r2wf.JP:8080%2Fdankogai%2F%E3%81%A0%E3%82%93%2F%E3%83%80%E3%83%B3';
+    $d = 'http://ドメイン名例.jp:8080/dankogai/だん/ダン';
+    $e = 'http:%2F%2Fxn--eckwd4c7cu47r2wf.jp:8080%2Fdankogai%2F%E3%81%A0%E3%82%93%2F%E3%83%80%E3%83%B3';
     is decodeURIComponentIDN($e) => $d, 'decodeURIComponentIDN';
     is encodeURIComponentIDN($d) => $e, 'encodeURIComponentIDN';
     $d = 'http://مثال.إختبار';
