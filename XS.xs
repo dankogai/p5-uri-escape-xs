@@ -35,6 +35,8 @@ static char escapes[256] =
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 };
 
+static char hex_chars[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
 SV *encode_uri_component(SV *sstr){
     SV *str, *result;
     int slen, dlen;
@@ -52,8 +54,9 @@ SV *encode_uri_component(SV *sstr){
 
     for (i = 0; i < slen; i++){
 	if (escapes[ src[i] ]){
-	    sprintf((char *)(dst + dlen), "%%%02X", src[i]);
-	    dlen += 3;
+	    dst[dlen++] = '%';
+	    dst[dlen++] = hex_chars[src[i]>>4];
+	    dst[dlen++] = hex_chars[src[i]%16];
 	}
 	else{
 	    dst[dlen++] = src[i];
