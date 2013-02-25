@@ -4,6 +4,10 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.9 $ $Date: 2012/08/06 01:44:20 $
+! XS.xs
+  Pulled: https://github.com/dankogai/p5-uri-escape-xs/pull/2
+
+0.09 2012/08/06 01:44:20
 ! lib/URI/Escape/XS.pm
   POD Fixes
 ! Makefile.PL
