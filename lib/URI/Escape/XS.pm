@@ -287,7 +287,7 @@ On Macbook Pro 2GHz, Perl 5.8.8.
 
 =head1 AUTHOR
 
-Dan Kogai, C<< <dankogai at dan.co.jp> >>
+Dan Kogai, C<< <dankogai+cpan at gmail.com> >>
 
 =head1 BUGS
 

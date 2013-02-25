@@ -2,30 +2,30 @@ NAME
     URI::Escape::XS - Drop-In replacement for URI::Escape
 
 VERSION
-    $Id: README,v 0.4 2009/03/24 14:24:09 dankogai Exp $
+    $Id: XS.pm,v 0.9 2012/08/06 01:44:20 dankogai Exp dankogai $
 
 SYNOPSIS
-        # use it instead of URI::Escape
-        use URI::Escape::XS qw/uri_escape uri_unescape/;
-        $safe = uri_escape("10% is enough\n");
-        $verysafe = uri_escape("foo", "\0-\377");
-        $str  = uri_unescape($safe);
+      # use it instead of URI::Escape
+      use URI::Escape::XS qw/uri_escape uri_unescape/;
+      $safe = uri_escape("10% is enough\n");
+      $verysafe = uri_escape("foo", "\0-\377");
+      $str  = uri_unescape($safe);
 
-        # or use encodeURIComponent and decodeURIComponent
-        use URI::Escape::XS;
-        $safe = encodeURIComponent("10% is enough\n");
-        $str  = decodeURIComponent("10%25%20is%20enough%0A");
+      # or use encodeURIComponent and decodeURIComponent
+      use URI::Escape::XS;
+      $safe = encodeURIComponent("10% is enough\n");
+      $str  = decodeURIComponent("10%25%20is%20enough%0A");
 
-        # if you have CNet::IDN::Encode installed
-        $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/")
-        $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
+      # if you have CNet::IDN::Encode installed
+      $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/");
+      $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
 
 EXPORT
   by default
     "encodeURIComponent" and "decodeURIComponent"
 
-    "encodeURIComponentIDN" and "decodeURIComponentIDN" if Net::IDN::Encode
-    is available
+    "encodeURIComponentIDN" and "decodeURIComponentIDN" if either
+    Net::LibIDN or Net::IDN::Encode is available
 
   on demand
     "uri_escape" and "uri_unescape"
@@ -63,7 +63,8 @@ FUNCTIONS
 
   encodeURIComponentIDN
     Same as "encodeURIComponent" except that the host part is encoded in
-    punycode. Net::IDN::Encode is required to use this function.
+    punycode. Either Net::LibIDN or Net::IDN::Encode is required to use this
+    function.
 
     URIs with Internationalizing Domain Names require two encodings:
     Punycode for host part and URI escape for the rest.
@@ -72,7 +73,8 @@ FUNCTIONS
 
   decodeURIComponentIDN
     Same as "decodeURIComponent" except that the host part is encoded in
-    punycode. Net::IDN::Encode is required to use this function.
+    punycode. Either Net::LibIDN or Net::IDN::Encode is required to use this
+    function.
 
   uri_escape
     Does exactly the same as URI::Escape::uri_escape() except when
@@ -153,7 +155,7 @@ SPEED
      U::E     565112/s       8%       --
 
 AUTHOR
-    Dan Kogai, "<dankogai at dan.co.jp>"
+    Dan Kogai, "<dankogai+cpan at gmail.com>"
 
 BUGS
     Please report any bugs or feature requests to "bug-uri-escape-xs at
@@ -190,10 +192,12 @@ ACKNOWLEDGEMENTS
 
     Koichi Taniguchi for URI::Escape::JavaScript
 
+    Thomas Jacob for Net::LibIDN
+
     Claus Färber for Net::IDN::Encode
 
 COPYRIGHT & LICENSE
-    Copyright 2007-2009 Dan Kogai, all rights reserved.
+    Copyright 2007-2012 Dan Kogai, all rights reserved.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

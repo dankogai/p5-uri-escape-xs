@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME          => 'URI::Escape::XS',
-    AUTHOR        => 'Dan Kogai <dankogai@dan.co.jp>',
+    AUTHOR        => 'Dan Kogai <dankogai+cpan@gmail.com>',
     VERSION_FROM  => 'lib/URI/Escape/XS.pm',
     ABSTRACT_FROM => 'lib/URI/Escape/XS.pm',
     LICENSE       => 'perl',
