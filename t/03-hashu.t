@@ -19,10 +19,10 @@ for my $k (keys %esc) {
     is decodeURIComponent($k) => $esc{$k}, qq{decodeURI("$k")};
 }
 
-SKIP:{
+{
     # Test::Harness 3.x hates me!
-    skip 'Test::Harness->VERSION > 3', 4
-        if Test::Harness->can('VERSION') and Test::Harness->VERSION >= 3;
+    # skip 'Test::Harness->VERSION > 3', 4
+    #   if Test::Harness->can('VERSION') and Test::Harness->VERSION >= 3;
     my $warn;
     local($SIG{__WARN__}) = sub { $warn = shift };
     is decodeURIComponent('%uD869') => '', qq{decodeURI("%uD869")};

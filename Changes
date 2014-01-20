@@ -4,7 +4,15 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.10 $ $Date: 2013/02/25 17:24:25 $
-! lib/URI/Escape/XS.pm README
+! t/03-hashu.t
+  No longer skips tests 4-6 for Test::Harness->VERSION > 3
+! Makefile.PL
+  Pulled: https://github.com/dankogai/p5-uri-escape-xs/pull/4
+! lib/URI/Escape/XS.pm
+  Pulled: https://github.com/dankogai/p5-uri-escape-xs/pull/3
+
+0.10 2013/02/25 17:24:25
+! lib/URI/Escape/XS.pm
   Updated mail address
 ! XS.xs
   Pulled: https://github.com/dankogai/p5-uri-escape-xs/pull/2
