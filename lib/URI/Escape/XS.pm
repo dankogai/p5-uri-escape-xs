@@ -211,7 +211,7 @@ L<URI::Escape>::uri_escape() croak and urge you to
 C<uri_escape_utf8()> but it is pointless because URI itself has no
 such things as utf8 flag.  The function in this module ALWAYS TREATS
 the string as byte sequence.  That way you can safely use this
-function without worring about utf8 flags.
+function without worrying about utf8 flags.
 
 Note this function is NOT EXPORTED by default.  That way you can use
 L<URI::Escape> and L<URI::Escape::XS> simultaneously.
@@ -225,7 +225,7 @@ L<URI::Escape>::uri_unescape() simply ignores %uHHHH sequences while
 the function in this module does decode it into the corresponding
 UTF-8 B<byte sequence>.
 
-Like L<uri_escape>, this funciton is NOT EXPORTED by default.
+Like L<uri_escape>, this function is NOT EXPORTED by default.
 
 =head2 Note on the %uHHHH sequence
 
