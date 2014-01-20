@@ -11,5 +11,15 @@ WriteMakefile(
     PL_FILES      => {},
     PREREQ_PM     => { 'Test::More' => 0, },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'URI-Escape-XS-*' },
+    clean         => { FILES => 'URI-Escape-XS-*' },
+    META_MERGE    => {
+        'meta-spec' => { version => 2 },
+        resources => {
+            repository => {
+                type => 'git',
+                url => 'https://github.com/dankogai/p5-uri-escape-xs.git',
+                web => 'https://github.com/dankogai/p5-uri-escape-xs',
+            },
+        },
+    },
 );
