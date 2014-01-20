@@ -1,9 +1,9 @@
 #
-# $Id: Changes,v 0.10 2013/02/25 17:24:25 dankogai Exp dankogai $
+# $Id: Changes,v 0.11 2014/01/20 20:39:54 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.10 $ $Date: 2013/02/25 17:24:25 $
+$Revision: 0.11 $ $Date: 2014/01/20 20:39:54 $
 ! t/03-hashu.t
   No longer skips tests 4-6 for Test::Harness->VERSION > 3
 ! Makefile.PL
