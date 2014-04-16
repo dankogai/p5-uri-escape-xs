@@ -1,11 +1,11 @@
 package URI::Escape::XS;
 #
-# $Id: XS.pm,v 0.11 2014/01/20 20:39:54 dankogai Exp dankogai $
+# $Id: XS.pm,v 0.12 2014/04/16 10:49:36 dankogai Exp dankogai $
 #
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = sprintf "%d.%02d", q$Revision: 0.11 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%02d", q$Revision: 0.12 $ =~ /(\d+)/g;
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent
@@ -118,7 +118,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 =head1 VERSION
 
-$Id: XS.pm,v 0.11 2014/01/20 20:39:54 dankogai Exp dankogai $
+$Id: XS.pm,v 0.12 2014/04/16 10:49:36 dankogai Exp dankogai $
 
 =cut
 
@@ -337,7 +337,7 @@ Claus Färber for L<Net::IDN::Encode>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2012 Dan Kogai, all rights reserved.
+Copyright 2007-2014 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

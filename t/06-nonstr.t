@@ -1,6 +1,6 @@
 #!perl -w
 #
-# $Id: 05-null.t,v 1.1 2009/10/07 11:40:30 dankogai Exp $
+# $Id: 06-nonstr.t,v 0.1 2014/04/16 10:48:20 dankogai Exp $
 #
 # https://rt.cpan.org/Ticket/Display.html?id=45855
 
