@@ -4,6 +4,12 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.11 $ $Date: 2014/01/20 20:39:54 $
+! XS.xs
++ t/06-nonstr.t
+  Addressed: RT#94793: encodeURIComponent can't encode integer values
+  https://rt.cpan.org/Ticket/Display.html?id=94793
+
+0.11 2014/01/20 20:39:54
 ! t/03-hashu.t
   No longer skips tests 4-6 for Test::Harness->VERSION > 3
 ! Makefile.PL
