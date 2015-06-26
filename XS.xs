@@ -37,6 +37,29 @@ static char escapes[256] =
 
 static char hex_chars[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
+
+/* Specialized strtol that converts two hex digits to an integer.
+ * Assumes caller has asserted there are two chars in the input buffer. */
+static inline int my_hextol(const char *buf){
+    int out = 0;
+    int tmp = (int)buf[0];
+
+    if (*buf <= '9')
+        out += *buf - '0';
+    else
+        out += *buf - 'A' + 10;
+
+    out *= 16;
+    ++buf;
+
+    if (*buf <= '9')
+        out += (*buf - '0');
+    else
+        out += *buf - 'A' + 10;
+
+    return out;
+}
+
 SV *encode_uri_component(SV *sstr){
     SV *str, *result;
     int slen, dlen;
@@ -90,7 +113,11 @@ SV *decode_uri_component(SV *suri){
 	    if (isxdigit(src[i+1]) && isxdigit(src[i+2])){
 		strncpy((char *)buf, (char *)(src + i + 1), 2);
 		buf[2] = '\0'; /* @kazuho++ */
+#ifndef EBCDIC
+                hi = my_hextol((char *)buf);
+#else
 		hi = strtol((char *)buf, NULL, 16);
+#endif
 		dst[dlen++] = hi;
 		i += 2;
 	    }
