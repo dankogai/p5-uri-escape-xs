@@ -1,12 +1,12 @@
 #!perl -w
 #
-# $Id: 02-basic.t,v 0.1 2007/04/27 17:17:46 dankogai Exp $
+# $Id: 02-basic.t,v 0.1 2007/04/27 17:17:46 dankogai Exp dankogai $
 #
 # Original as URI-1.35/t/escape.t
 #
 
 use URI::Escape::XS;
-use Test::More tests => 512;
+use Test::More tests => 697;
 
 # basic round-trip test
 for my $ord (  0 .. 255 ) {
@@ -15,4 +15,8 @@ for my $ord (  0 .. 255 ) {
     my $esc = $chr =~ /[A-Za-z0-9\-_.!~*'()]/ ? $chr : sprintf "%%%02X", $ord;
     is encodeURIComponent($chr) => $esc, "encodeURIComponent(ord $ord)";
     is decodeURIComponent($esc) => $chr, "decodeURIComponent($esc)";
+    if ($esc =~ /^%/) {
+        my $lesc = lc $esc;
+        is decodeURIComponent($lesc) => $chr, "decodeURIComponent($lesc)";
+    }
 }

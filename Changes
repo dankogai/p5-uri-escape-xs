@@ -4,6 +4,13 @@
 # Revision history for Revision history for URI-Escape-XS
 #
 $Revision: 0.12 $ $Date: 2014/04/16 10:49:36 $
+! XS.xs t/02-basic.t
+  Refactor & debug my_hextol()
+! XS.xs
+  Pulled: Speed up common case of decoding
+  https://github.com/dankogai/p5-uri-escape-xs/pull/5
+
+0.12 2014/04/16 10:49:36
 ! XS.xs
 + t/06-nonstr.t
   Addressed: RT#94793: encodeURIComponent can't encode integer values
