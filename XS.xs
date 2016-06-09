@@ -14,6 +14,10 @@
 # include <string.h>
 # include <ctype.h>
 
+#if defined(_MSC_VER) && (_MSC_VER < 1900)
+#define inline __inline
+#endif
+
 static char escapes[256] = 
 /*  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f */
 {
