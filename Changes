@@ -1,9 +1,14 @@
 #
-# $Id: Changes,v 0.13 2015/06/27 00:28:39 dankogai Exp dankogai $
+# $Id: Changes,v 0.14 2016/06/09 11:09:38 dankogai Exp dankogai $
 #
 # Revision history for Revision history for URI-Escape-XS
 #
-$Revision: 0.13 $ $Date: 2015/06/27 00:28:39 $
+$Revision: 0.14 $ $Date: 2016/06/09 11:09:38 $
+! XS.xs
+  pulled: RT #115183: MSVC 2013 and earlier do not understand `inline`
+  https://github.com/dankogai/p5-uri-escape-xs/pull/6
+ 
+0.13 2015/06/27 00:28:39
 ! XS.xs t/02-basic.t
   Refactor & debug my_hextol()
 ! XS.xs

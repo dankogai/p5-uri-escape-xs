@@ -1,6 +1,6 @@
 #!perl -w
 #
-# $Id: 02-basic.t,v 0.2 2015/06/27 00:28:39 dankogai Exp dankogai $
+# $Id: 02-basic.t,v 0.2 2015/06/27 00:28:39 dankogai Exp $
 #
 # Original as URI-1.35/t/escape.t
 #
