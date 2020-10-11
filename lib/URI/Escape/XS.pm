@@ -139,6 +139,15 @@ $Id: XS.pm,v 0.14 2016/06/09 11:09:14 dankogai Exp $
   $safe = encodeURIComponentIDN("http://ドメイン名例.jp/dan/");
   $str  = decodeURIComponentIDN("http:%2F%2Fxn--eckwd4c7cu47r2wf.jp%2Fdan%2F");
 
+=head1 DESCRIPTION
+
+ URI::Escape::XS is a drop-in replacement for URI::Escape for common cases which
+ offers much faster performance by using compiled XS code.
+
+ This module requires Perl 5.8.1 compared to 5.6.1 for URI::Escape.
+ The uri_escape_utf8 function from URI::Escape is not present here, as
+ our uri_escape() method handles UTF-8 characters automatically.
+
 =head1 EXPORT
 
 =head2 by default
@@ -287,7 +296,7 @@ On Macbook Pro 2GHz, Perl 5.8.8.
 
 =head1 AUTHOR
 
-Dan Kogai, C<< <dankogai+cpan at gmail.com> >>
+Dan Kogai, C<< <dankogai at cpan.org> >>
 
 =head1 BUGS
 
