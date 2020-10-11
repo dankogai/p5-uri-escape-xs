@@ -1,7 +1,7 @@
 #
 # $Id: Changes,v 0.14 2016/06/09 11:09:38 dankogai Exp dankogai $
 #
-# Revision history for Revision history for URI-Escape-XS
+# Revision history for URI-Escape-XS
 #
 $Revision: 0.14 $ $Date: 2016/06/09 11:09:38 $
 ! XS.xs
