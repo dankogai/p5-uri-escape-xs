@@ -346,7 +346,7 @@ Claus Färber for L<Net::IDN::Encode>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2014 Dan Kogai, all rights reserved.
+Copyright 2007-2020 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
