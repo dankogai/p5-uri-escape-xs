@@ -1,0 +1,33 @@
+# Build directories
+/blib/
+/_eumm/
+cover_db/
+
+# ExtUtils::MakeMaker output
+Makefile
+Makefile.old
+MYMETA.*
+pm_to_blib
+/META.yml
+/META.json
+/MANIFEST.bak
+
+# Compiler output
+*.o
+*.bs
+
+# Generated source (xsubpp output of XS.xs)
+/XS.c
+
+# Distribution directory and tarball (make dist)
+/URI-Escape-XS-*
+
+# Test / profiling leftovers
+.last_cover_stats
+nytprof.out
+
+# Editor backups
+*~
+
+# Claude Code
+.claude/
