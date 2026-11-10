@@ -46,7 +46,7 @@ sub uri_unescape {
 	    $text =~ s/($regexp{$patn})/$escapes{$1}/ge;
 	    return $text;
 	} else {
-	    return encodeURIComponent($text);
+	    return _uri_escape($text);
 	}
     }
 }
