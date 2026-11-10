@@ -1,4 +1,4 @@
-[![build status](https://secure.travis-ci.org/dankogai/p5-uri-escape-xs.png)](http://travis-ci.org/dankogai/p5-uri-escape-xs)
+[![CI on Perl 5.{42,40,38} on {Linux,macOS}](https://github.com/dankogai/p5-uri-escape-xs/actions/workflows/platforms.yml/badge.svg)](https://github.com/dankogai/p5-uri-escape-xs/actions/workflows/platforms.yml)
 
 # NAME
 

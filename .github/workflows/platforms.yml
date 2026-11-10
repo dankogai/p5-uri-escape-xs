@@ -1,0 +1,28 @@
+name: CI on Perl 5.{42,40,38} on {Linux,macOS}
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    tags: [ '*.*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'macos-latest']
+        perl: [ '5.42', '5.40', '5.38' ]
+    name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: ${{ matrix.perl }}
+      - run: perl -V
+      - run: cpanm --installdeps .
+      - run: perl Makefile.PL
+      - run: make test
