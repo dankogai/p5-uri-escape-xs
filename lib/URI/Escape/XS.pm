@@ -5,7 +5,7 @@ package URI::Escape::XS;
 use 5.008001;
 use warnings;
 use strict;
-our $VERSION = sprintf "%d.%02d", q$Revision: 0.14 $ =~ /(\d+)/g;
+our $VERSION = '0.14';
 
 use base qw(Exporter);
 our @EXPORT    = qw(encodeURIComponent decodeURIComponent
