@@ -1,4 +1,4 @@
-name: CI on Perl 5.8-36 on Linux
+name: CI on Perl 5.26-36 on Linux
 
 on:
   workflow_dispatch:
@@ -17,17 +17,7 @@ jobs:
           - "5.34"
           - "5.32"
           - "5.30"
-          - "5.28"
           - "5.26"
-          - "5.24"
-          - "5.22"
-          - "5.20"
-          - "5.18"
-          - "5.16"
-          - "5.14"
-          - "5.12"
-          - "5.10"
-          - "5.8"
     name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
