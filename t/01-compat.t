@@ -1,6 +1,6 @@
 #!perl -w
 #
-# $Id: 01-compat.t,v 0.2 2009/03/24 14:24:09 dankogai Exp $
+# $Id: 01-compat.t,v 0.3 2026/11/10 15:10:37 dankogai Exp $
 #
 # Original as URI-1.35/t/escape.t
 #

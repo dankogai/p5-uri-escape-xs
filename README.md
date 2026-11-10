@@ -6,7 +6,7 @@ URI::Escape::XS - Drop-In replacement for URI::Escape
 
 # VERSION
 
-$Id: XS.pm,v 0.14 2016/06/09 11:09:14 dankogai Exp $
+$Id: XS.pm,v 0.15 2026/11/10 15:10:37 dankogai Exp $
 
 # SYNOPSIS
 
